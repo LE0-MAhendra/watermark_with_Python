@@ -1,0 +1,147 @@
+#:import hex kivy.utils.get_color_from_hex
+
+<Mainscreen>:
+    name: "main_screen"
+    MDBoxLayout:
+        halign:"center"
+        size:root.width,root.height
+        adaptive_height:True
+        
+        MDBoxLayout:
+            orientation:"vertical"
+            size_hint_x:0.3
+            spacing:"10dp"
+            padding:"10dp"
+            md_bg_color:hex("#C0DBEA")
+            MDLabel:
+                text:
+                    f"\n[b][size={int(sp(40))}]WaterMark[/b][/size]\n"\
+                    "Maker\n"
+                theme_text_color: "Custom"
+                text_color: hex("#009FBD")
+                halign:"center"
+                markup:True
+                font_size:"20sp"
+            MDLabel:
+                
+                text:"Choose WaterMark"
+                font_size:"20sp"
+                bold:True
+            MDBoxLayout:
+                orientation:"horizontal"
+                spacing:"30dp"
+                MDRoundFlatButton:
+                    id:watermark
+                    text: "Choose"
+                    text_color: "white"
+                    halign:"center"
+                    pos_hint:{"left":1}
+                    on_release:root.file_manager_open("wmark")
+                    
+                MDLabel:
+                    id: marktext
+                    text:f"watermark.png"
+                    pos_hint:{"right":1}
+            MDLabel:
+                
+                text:"Choose Photo"
+                font_size:"20sp"
+                bold:True
+            MDBoxLayout:
+                orientation:"horizontal"
+                spacing:"30dp"
+                MDRoundFlatButton:
+                    id:imager
+                    text: "Choose"
+                    text_color: "white"
+                    halign:"center"
+                    pos_hint:{"left":1}
+                    on_release:root.file_manager_open("mainimage")
+                MDLabel:
+                    id: phototext
+                    text:"formats -> jpg,png"
+                    pos_hint:{"right":1}
+            MDBoxLayout:
+                orientation:"horizontal"
+                MDRoundFlatButton:
+                    text:"select location"
+                    on_release:root.file_manager_open("filepath")
+                MDLabel:
+                    id: savepath
+                    text:""
+                    font_size:"16sp"
+
+            MDLabel:
+                text:f"\nChoose Opacity"
+                font_size:"20sp"
+                bold:True
+            MDSlider
+                id:opacity_slider
+                hint: True
+                min:0.05
+                value:0.5
+                max:1.0
+                step:0.01
+                hint_bg_color: "red"
+                hint_text_color: "white"
+                hint_radius: [6, 0, 6, 0]
+            MDLabel:
+                text:f"\nChoose size"
+                font_size:"20sp"
+                bold:True
+            MDSlider
+                id:size_slider
+                hint: True
+                min:0.1
+                value:1
+                max:2.0
+                step:0.1
+                hint_bg_color: "red"
+                hint_text_color: "white"
+                hint_radius: [6, 0, 6, 0]
+            MDFillRoundFlatButton:
+                id:make
+                text:"C r E a T e"
+                on_release:root.start()
+            MDLabel:
+                text:f"\nMade by Le0_Mahendra"
+                halign: "right"
+                bold:True
+        MDBoxLayout:
+            orientation:"vertical"
+            size_hint_x:0.7
+            spacing:20
+            padding:20
+            md_bg_color:hex("#E8A0BF")
+            MDBoxLayout:
+                size_hint_y:.1
+                md_bg_color:hex("#009FBD")
+                MDLabel:
+                    id:photoname
+                    text:"name of the photo"
+                    halign:"center"
+            MDBoxLayout:
+                size_hint_y:.8
+                
+                Image:
+                    md_bg_color:hex("#2A2F4F")
+                    id:imagebox
+                    source:""
+                    size_hint:(1,1)
+                    
+            MDBoxLayout:
+                size_hint_y:.1
+                md_bg_color:hex("#009FBD")
+                halign:"center"
+                spacing:"30dp"
+                MDFillRoundFlatButton:
+                    text:"save"
+                    font_size:"16sp"
+                    spacing:"30dp"
+                    padding:"30dp",0,"30dp",0
+                    on_release:root.save_image()
+                MDLabel:
+                    id:saveid
+                    text:""
+
+ 
